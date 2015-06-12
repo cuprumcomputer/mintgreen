@@ -2,28 +2,28 @@
 Mint Green is a super simple programming language, great for beginners into programming. It is based off of C++, and is not a really serious programming language, but more of a simple facade to begin programming in.
 
 Math:
-   /, divide: x / 6
-   *, multiply: y * 4
-   +, add: x + 2
-   -, subtract: x - 2
+   */, divide: x / 6
+   **, multiply: y * 4
+   *+, add: x + 2
+   *-, subtract: x - 2
 		
 Variable:
-   &, character variable: & x
-   #, positive integer variable: # y
-   =, equals: x = 2
-   (), assign varaible to expression: x = (y + 3)
+   *&, character variable: & x
+   *#, positive integer variable: # y
+   *=, equals: x = 2
+   *(), assign varaible to expression: x = (y + 3)
 
 Basic:
-   [], number of lines: [3]
-   !(), display: !(2)
-   ^, new line: !(^)
-   >, go back to: > 0
-   ?(), if statement: ?(x = y)
-   >, greater than: ?(x > y)
-   <, less than: ?(x < y)
-   =, compare if equal: ?(x = y)
-   ~, not a variable, a string: x = ~a, !(~mint green)
-   $, end program: $
+   *[], number of lines: [3]
+   *!(), display: !(2)
+   *^, new line: !(^)
+   *>, go back to: > 0
+   *?(), if statement: ?(x = y)
+   *>, greater than: ?(x > y)
+   *<, less than: ?(x < y)
+   *=, compare if equal: ?(x = y)
+   *~, not a variable, a string: x = ~a, !(~mint green)
+   *$, end program: $
 
 The attached sample programs show how to use these commands to fully take advantage of Mint Green. Mint Green is generally a loose language, but here are a few rules/issues you must follow:
 
