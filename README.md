@@ -47,23 +47,32 @@ The attached sample programs show how to use these commands to fully take advant
 
 * Whenever using variables in expressions or if statements a variable must come first. 
   For Example:
+
 	?(x < 6) … Correct!
+	
 	?(6 > x) … Wrong!
+	
 	x = (y + 1) … Correct!
+	
 	y = (1 + y) … Wrong!
 
 * At the beginning of every Mint Green program you must declare the number of lines. 
 You must include blank lines, the terminating “$” command, and the declaration “[8]” in the number of lines.
 For Example:
+
 	[3] … line 1
+	
 	!(~hi) … line 2
+	
 	$ … line 3
 
 * There is a fixed array that hold 100 integer variables and 100 character variables. I have not found a way to create an infinite number of variables.
 
 * You can use “~” to display strings of letters and symbols, but you can’t make character variables equal to strings.
 For Example:
+
 	!(~hello, hi) … Correct!
+	
 	x = ~hello … Wrong!
 
 * Your Mint Green program must be on a blank text file, and when asked for the name of it, you may or may not have to type “.txt” at the end. Also the program must be in the same folder as the compiler. I recommend just editing the sample programs to create your program.
