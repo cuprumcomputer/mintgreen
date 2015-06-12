@@ -29,11 +29,11 @@ Basic:
    
    ^, new line: !(^)
    
-   >, go back to: > 0
+   ">", go back to: > 0
    
    ?(), if statement: ?(x = y)
    
-   >, greater than: ?(x > y)
+   ">", greater than: ?(x > y)
    
    <, less than: ?(x < y)
    
