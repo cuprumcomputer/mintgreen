@@ -2,6 +2,7 @@
 Mint Green is a super simple programming language, great for beginners into programming. It is based off of C++, and is not a really serious programming language, but more of a simple facade to begin programming in.
 
 Math:
+
    /, divide: x / 6
    
    *, multiply: y * 4
@@ -11,6 +12,7 @@ Math:
    -, subtract: x - 2
 		
 Variable:
+
    &, character variable: & x
    
    #, positive integer variable: # y
@@ -20,6 +22,7 @@ Variable:
    (), assign varaible to expression: x = (y + 3)
 
 Basic:
+
    [], number of lines: [3]
    
    !(), display: !(2)
