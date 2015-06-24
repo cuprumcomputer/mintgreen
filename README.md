@@ -13,6 +13,6 @@ You must include blank lines, the terminating “$” command, and the declarati
 
 * You can use “~” to display a string, or make a character variable equal to a character.
 
-* Your Mint Green program must be on a blank text file, and when asked for the name of it, you may or may not have to type “.txt” at the end. Also the program must be in the same folder as the compiler. I recommend just editing the sample programs to create your own program.
+* Your Mint Green program must be on a blank text file, and when asked for the name of it, you have to type “.txt” at the end (for the sample programs). Also the program must be in the same folder as the compiler. I recommend just editing the sample programs to create your own program.
 
 Thank you and I hope you enjoy Mint Green Programming Language!
