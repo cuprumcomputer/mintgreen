@@ -1,8 +1,8 @@
 # Mint Green Programming Language
 
-Mint Green is a super simple programming language, great for beginners into programming. It is based off of C++, and is not a really serious programming language, but more of a simple facade to begin programming in.
+Mint Green is a super simple programming language, great for beginners into programming. It is based off of C++, and is not a really serious programming language, but more of a simple facade to begin programming in. It is a great way to begin programming and I wish I had it when I began programming.
 
-The attached sample programs show how to use all of the commands to fully take advantage of Mint Green. There is also a “command key” at the bottom of the compiler. Mint Green is generally a loose language, but here are a few rules/issues you must follow:
+The attached sample programs show how to use all of the commands to fully take advantage of Mint Green. There is also a “command key” at the bottom of the compiler code. Mint Green is generally a loose language, but here are a few rules/issues you must follow:
 
 * Whenever using variables in expressions or if statements a variable must come first. 
 
@@ -11,8 +11,8 @@ You must include blank lines, the terminating “$” command, and the declarati
 
 * There is a fixed array that hold 100 integer variables and 100 character variables. I have not found a way to create a (virtually) infinite number of variables.
 
-* You can use “~” to display a string, or make a character variable equal to a character.
+* You can use “~” to display a string, or make a variable equal to a character.
 
-* Your Mint Green program must be on a blank text file, and when asked for the name of it, you have to type “.txt” at the end (for the sample programs). Also the program must be in the same folder as the compiler. I recommend just editing the sample programs to create your own program.
+* Your Mint Green program must be on a blank text file, and when asked for the name of it, you have to type “.txt” at the end (for the sample programs). Also the program must be in the same folder as the compiler. I recommend just editing the sample programs I provided to create your own program.
 
 Thank you and I hope you enjoy Mint Green Programming Language!

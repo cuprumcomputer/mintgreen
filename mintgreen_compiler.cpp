@@ -1,4 +1,4 @@
-// Mint Green Programming Languge
+// Mint Green Programming Languge Compiler
 // Developedd By CUPRUM[]
 
 #include <iostream>

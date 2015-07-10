@@ -1,4 +1,4 @@
-[20]
+[21]
 & one
 & two
 & three
@@ -18,3 +18,4 @@ five = ~o
 !(five)
 !(^)
 !(~world)
+$
