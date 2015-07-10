@@ -1,6 +1,6 @@
 # Mint Green Programming Language
 
-Mint Green is a super simple programming language, great for beginners into programming. It is based off of C++, and is not a really serious programming language, but more of a simple facade to begin programming in. It is a great way to begin programming and I wish I had it when I began programming.
+Mint Green is a super simple programming language, great for beginners into programming. It is based off of C++, and is not a really serious programming language, but more of a simple facade to begin programming in. It is a great way to be introduced to programming and I wish I had it when I began programming.
 
 The attached sample programs show how to use all of the commands to fully take advantage of Mint Green. There is also a “command key” at the bottom of the compiler code. Mint Green is generally a loose language, but here are a few rules/issues you must follow:
 
