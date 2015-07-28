@@ -13,7 +13,7 @@ You must include blank lines, the terminating “$” command, and the declarati
 
 * You can use “~” to display a string, or make a variable equal to a character.
 
-* A variable’s can be virtually as long as you want, but must be only made up of the alphabet and no other characters.
+* A variable’s name can be virtually as long as you want, but must be only made up of the alphabet and no other characters.
 
 * Your Mint Green program must be on a text file, and when asked for the name of it, you may have to type “.txt” at the end, and for the sample program you must. Also the program must be in the same folder as the compiler. I recommend just editing the sample program I provided to create your own program.
 
