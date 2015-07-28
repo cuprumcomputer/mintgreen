@@ -1,4 +1,4 @@
-// Mint Green Programming Languge Compiler
+// Mint Green Programming Languge
 // Developedd By CUPRUM[]
 
 #include <iostream>
@@ -41,6 +41,7 @@ void AssignValue(int);
 void Display(int);
 int FindVariable(int);
 bool IsChar(int);
+void GetInput(int);
 
 int main() {
 	const int size = 30; // Number of Characters in File Name
@@ -113,6 +114,11 @@ int main() {
 			goto bottom;
 		}
 		
+		if (program[x][0] == '@') { // Get Input
+			GetInput(x);
+			goto bottom;
+		}
+		
 		if (program[x][0] == '?') { // If Statement
 			x = IfStatement(x);
 			goto bottom;
@@ -159,6 +165,36 @@ int GoTo(int x) {
 	}
 
 	return(position - 2); // Go Back 2 Because 1 is Added at End of For Loop, and Line Numbers Start at 1
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+void GetInput(int x) {
+	char input;
+	
+// FIND VARIABLE BEING REFERENCED
+	if (isalpha(program[x][2])) { // Copy First Letter of Character Variable Name
+		isolated = program[x][2];
+	} else {
+		cout << "FATAL ERROR AT LINE " << x + 1 << ": IMPROPER SYNTAX!" << endl; // Display Error
+		delete [] program;
+		exit(EXIT_FAILURE); // Quit
+	}
+	
+	for (int i = 3; isalpha(program[x][i]); i++) // Copy Each Letter of Character Variable Name
+		isolated += program[x][i];
+		
+	position = FindVariable(x);
+	is_char = IsChar(x);
+
+// GET ACTUAL INPUT	
+	cin.get(input);
+
+// ASSIGN INPUT TO VARIABLE
+	if (is_char) {
+		chardex[position].value = input;
+	} else {
+		intdex[position].value = (int)input - 48;
+	}
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -632,6 +668,7 @@ Mint Green Programming Language
 	Basic:
 		[], number of lines: [3]
 		!(), display: !(2)
+		@(), get input: @(x)
 		^, new line: !(^)
 		=, equals: x = 2
 		>, go back to: > 0
