@@ -1,18 +1,21 @@
-[18] 
+[21] 
 # x
-# y
-
-!(~Enter Number To Count To, Between 0 and 9: )
-@(y)
-
 x = 1
+
+& y
+
+!(~Enter ‘g’ to Count to 100: )
+@ y
+
+?(y = ~g)
+> 14 
+$
 
 !(x)
 !(^)
 
-?(x < y)
-> 17
-$
-
 x = (x + 1)
-> 10
+
+?(x < 101)
+> 14
+$

@@ -17,4 +17,6 @@ You must include blank lines, the terminating “$” command, and the declarati
 
 * Your Mint Green program must be on a text file, and when asked for the name of it, you may have to type “.txt” at the end, and for the sample program you must. Also the program must be in the same folder as the compiler. I recommend just editing the sample program I provided to create your own program.
 
+* If when you try to run the Mint Green Compiler, it paused and declares a segmentation fault, quit your C++ compiler and retry. If it continues to happen, please note it in the issues.
+
 Thank you and I hope you enjoy Mint Green Programming Language!

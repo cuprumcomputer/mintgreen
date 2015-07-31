@@ -52,7 +52,7 @@ int main() {
 	string temp;
 	
 // GET INPUT
-	cout << "Mint Green Programming Language" << endl;
+	cout << "Mint Green Programming Language Compiler" << endl;
 	cout << "Developed By CUPRUM[]" << endl << endl;
 	
 	cout << "Enter the Name of your Mint Green Program: ";
@@ -295,6 +295,8 @@ int IfStatement(int x) {
 	bool is_factor_found = false;
 	bool is_operation_found = false;
 	
+	char isolated_char; // Used Instead of isolated so it can be Typecast into Integer
+	
 // FIND AND PROCESS VARIABLE
 	if (isalpha(program[x][2])) { 
 		isolated = program[x][2];
@@ -332,9 +334,9 @@ int IfStatement(int x) {
 	}
 	
 	if (program[x][2 + name_size + 3] == '~') { // If Factor is a Character
-		isolated = program[x][2 + name_size + 3 + 1];
+		isolated_char = program[x][2 + name_size + 3 + 1];
 		
-		factor = atoi(isolated.c_str()); // Turn Character in isolated to int
+		factor = int(isolated_char); // Turn Character in isolated to int
 		
 		is_factor_found = true;
 	}
