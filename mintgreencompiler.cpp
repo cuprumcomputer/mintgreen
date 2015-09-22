@@ -1,5 +1,5 @@
 // Mint Green Programming Languge
-// Developedd By CUPRUM[]
+// Developed By CUPRUM[]
 
 #include <iostream>
 #include <fstream> 
