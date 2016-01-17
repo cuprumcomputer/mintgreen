@@ -44,7 +44,7 @@ bool IsChar(int);
 void GetInput(int);
 
 int main() {
-	const int size = 30; // Number of Characters in File Name
+	const int size = 100; // Number of Characters in File Name
 	char file_name[size]; // String that Holds File Name
 	
 	int line = 1;
@@ -94,53 +94,51 @@ int main() {
 	
 // DECODE AND RUN EACH LINE
 	for (int x = 1; x < line_number; x++) { // Run Through Every Line
-		if (program[x][0] == '#') { // Creating Integer
-			CreateInt(x);
-			goto bottom;
-		}
-		
-		if (program[x][0] == '&') { // Creating Character
-			CreateChar(x);
-			goto bottom;
-		}
-		
-		if (isalpha(program[x][0])) { // Assigning Value
-			AssignValue(x);
-			goto bottom;	
-		}
-		
-		if (program[x][0] == '!') { // Display
-			Display(x);
-			goto bottom;
-		}
-		
-		if (program[x][0] == '@') { // Get Input
-			GetInput(x);
-			goto bottom;
-		}
-		
-		if (program[x][0] == '?') { // If Statement
-			x = IfStatement(x);
-			goto bottom;
-		}
+		switch (program[x][0]) {
+			case '#': // Creating Integer
+				CreateInt(x);
+			break;
 			
-		if (program[x][0] == '>') { // Going Back
-			x = GoTo(x);
-			goto bottom;
+			case '&': // Creating Character
+				CreateChar(x);
+			break;
+			
+			case '!': // Display
+				Display(x);
+			break;
+				
+			case '@': // Get Input
+				GetInput(x);
+			break;
+				
+			case '?': // If Statement
+				x = IfStatement(x);
+			break;
+			
+			case '>': // Going Back
+				x = GoTo(x);
+			break;
+					
+			case '*':
+				cout << "CHUR🍒BUM" << endl;
+			break;
+					
+			case '$': // End Program
+				delete [] program;
+				exit(EXIT_SUCCESS);
+			break;
+			
+			default:
+				if (isalpha(program[x][0])) { // Assigning Value
+					AssignValue(x);
+				} else {
+					cout << "FATAL ERROR AT LINE " << x + 1 << ": IMPROPER SYNTAX!" << endl; // Display Error
+					delete [] program;
+					exit(EXIT_FAILURE); // Quit
+				}
 		}
-		
-		if (program[x][0] == '*') {
-			cout << "CHERRY🍒BOMB" << endl;
-			goto bottom;
-		}
-		
-		if (program[x][0] == '$') { // End Program
-			delete [] program;
-			exit(EXIT_SUCCESS);
-		}
-		
-		bottom: cout << ""; // Do Nothing At Bottom
 	}		
+	
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
