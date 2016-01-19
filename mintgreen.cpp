@@ -2,9 +2,13 @@
 // Developed By CUPRUM[]
 
 #include <iostream>
-#include <fstream> 
+#include <fstream>
 
 using namespace std;
+
+extern "C" { 
+	void * __dso_handle = NULL;
+}
 
 static string * program;
 int line_number;
@@ -12,6 +16,10 @@ int line_number;
 string isolated;
 int position;
 
+int current_int;
+int current_char;
+
+bool is_char;
 
 const int VARIABLE_NUMBER = 100;
 
@@ -28,11 +36,6 @@ struct integer { // Integer Struct Holds Integer Name and Value
 static integer intdex[VARIABLE_NUMBER]; // Holds All Integer Values
 static character chardex[VARIABLE_NUMBER]; // Holds All Character Values
 
-int current_int = 0;
-int current_char = 0;
-
-bool is_char;
-
 void CreateInt(int);
 void CreateChar(int);
 int GoTo(int);
@@ -44,10 +47,11 @@ bool IsChar(int);
 void GetInput(int);
 
 int main() {
-	const int size = 100; // Number of Characters in File Name
-	char file_name[size]; // String that Holds File Name
+	const int NAME_SIZE = 100; // Number of Characters in File Name
+	char file_name[NAME_SIZE]; // String that Holds File Name
 	
-	int line = 1;
+	current_int = 0;
+	current_char = 0;
 	
 	string temp;
 	
@@ -56,7 +60,7 @@ int main() {
 	cout << "Developed By CUPRUM[]" << endl << endl;
 	
 	cout << "Enter the Name of your Mint Green Program: ";
-	cin.getline(file_name, size); // Get File Name
+	cin.getline(file_name, NAME_SIZE); // Get File Name
 
 // OPEN AND CHECK FILE
 	ifstream file; // Create Input File
@@ -72,26 +76,26 @@ int main() {
 
 // GET NUMBER OF LINES
 	getline(file, temp);
-	
+
 	if (temp[0] == '[') {
 		for (int i = 1; isdigit(temp[i]); i++)
 			isolated += temp[i];
 			
-		line_number = atoi(isolated.c_str());
+		line_number = stoi(isolated);
 	} else {
 		cout << "FATAL ERROR AT LINE 1: MUST DECLARE NUMBER OF LINES!" << endl; // Display Error
 		file.close();
 		exit(EXIT_FAILURE); // Quit
 	}
-	
+		
 // COPY LINES
 	program = new string[line_number];
 	
-	while (getline(file, program[line]))
-		line++;
-	
+	for (int i = 1; i < line_number; i++)
+		getline(file, program[i]);
+
 	file.close();
-	
+		
 // DECODE AND RUN EACH LINE
 	for (int x = 1; x < line_number; x++) { // Run Through Every Line
 		switch (program[x][0]) {
@@ -129,16 +133,10 @@ int main() {
 			break;
 			
 			default:
-				if (isalpha(program[x][0])) { // Assigning Value
+				if (isalpha(program[x][0])) // Assigning Value
 					AssignValue(x);
-				} else {
-					cout << "FATAL ERROR AT LINE " << x + 1 << ": IMPROPER SYNTAX!" << endl; // Display Error
-					delete [] program;
-					exit(EXIT_FAILURE); // Quit
-				}
 		}
 	}		
-	
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -154,7 +152,7 @@ int GoTo(int x) {
 	for (int i = 3; isdigit(program[x][i]); i++) // Go Through the Following Digits and Add them to isolated
 		isolated += program[x][i];
 	
-	position = atoi(isolated.c_str()); // Convert isolated into an Integer and Assign it to position
+	position = stoi(isolated); // Convert isolated into an Integer and Assign it to position
 	
 	if ((position - 2) < 0 || (position - 2) > line_number) { // Check if Number is Invalid
 		cout << "FATAL ERROR AT LINE " << x + 1 << ": INVALID LINE NUMBER!" << endl;
@@ -184,7 +182,7 @@ void GetInput(int x) {
 	position = FindVariable(x);
 	is_char = IsChar(x);
 
-// GET ACTUAL INPUT	
+// GET INPUT	
 	cin.get(input);
 
 // ASSIGN INPUT TO VARIABLE
@@ -326,7 +324,7 @@ int IfStatement(int x) {
 		for (int i = 1; isdigit(program[x][2 + name_size + 3 + i]); i++) 
 			isolated += program[x][2 + name_size + 3 + i];
 		
-		factor = atoi(isolated.c_str());
+		factor = stoi(isolated);
 		
 		is_factor_found = true;
 	}
@@ -398,12 +396,12 @@ int IfStatement(int x) {
 void AssignValue(int x) {
 	bool is_assigned = false;
 	
-	int reciever_name_size; // Size of Vaiable being Assigned a Value
-	
 	int reciever; // Variable being Assinged a Value
 	int transmitter; // Variable being Used to Find Value of reciever
 	
+	int reciever_name_size; // Size of Vaiable being Assigned a Value
 	int transmitter_name_size; // Size of Variable's Name being Used to Find Value of reciever
+	
 	int factor; // Integer of Integer Variable being Assigned
 	int operation; // Type of Four Operations being Used
 
@@ -430,7 +428,7 @@ void AssignValue(int x) {
 			for (int i = 4; isdigit(program[x][reciever_name_size + i]); i++) // Go Through the Following Digits and Add them to isolated
 				isolated += program[x][reciever_name_size + i];
 			
-			intdex[reciever].value = atoi(isolated.c_str()); // Convert String to Integer and Assign it to a Variable in the intdex
+			intdex[reciever].value = stoi(isolated); // Convert String to Integer and Assign it to a Variable in the intdex
 		
 			is_assigned = true;
 		} 
@@ -512,7 +510,7 @@ void AssignValue(int x) {
 				for (int i = 4; isdigit(program[x][reciever_name_size + 4 + transmitter_name_size + i]); i++) // Copy Down Other Characters
 					isolated += program[x][reciever_name_size + i + transmitter_name_size + i];
 					
-				factor = atoi(isolated.c_str()); // Turn String to Integer and Copy it to Factor
+				factor = stoi(isolated); // Turn String to Integer and Copy it to Factor
 			} else {
 				if (isalpha(program[x][reciever_name_size + 4 + transmitter_name_size + 3])) { // If factor is a Variable
 					isolated = program[x][reciever_name_size + 4 + transmitter_name_size + 3];
@@ -659,14 +657,14 @@ Mint Green Programming Language
 		-, subtract: x - 2
 		>, greater than: ?(x > y)
 		<, less than: ?(x < y)
-		(), assign varaible to expression: x = (y + 3)
+		(), assign variable to expression: x = (y + 3)
 		
 	Variable:
 		&, character variable: & x
 		#, positive integer variable: # y
 		
-	Basic:
-		[], number of lines: [3]
+	Special:
+		[], declare number of lines: [3]
 		!(), display: !(2)
 		@(), get input: @(x)
 		^, new line: !(^)
