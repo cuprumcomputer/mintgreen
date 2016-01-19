@@ -1,6 +1,8 @@
 # Mint Green Programming Language
 
-Mint Green is a small and simplistic programming language. Its syntax is based off of C++ and JQuery. The attached sample program shows how to use all of the commands to fully take advantage of Mint Green. Mint Green is generally a loose language, but here are a few guidelines/bugs:
+Mint Green is a small and simplistic programming language. Its syntax is based off of C++ and JQuery. The attached sample program shows how to use all of the commands to fully take advantage of Mint Green.
+
+**Bugs/Rules:**
 
 * Whenever using variables in expressions or if statements a variable must come first. 
 
@@ -17,7 +19,7 @@ You must include blank lines, the terminating “$” command, and the declarati
 
 * If when you try to run the Mint Green Compiler, it paused and declares a segmentation fault, quit your C++ compiler and retry. If it continues to happen, please note it in the issues.
 
-Mint Green Programming Language Command Key:
+**Mint Green Programming Language Command Key:**
 
 	Math:
 		/, divide: x / 6
