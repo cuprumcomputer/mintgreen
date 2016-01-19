@@ -18,6 +18,7 @@ You must include blank lines, the terminating “$” command, and the declarati
 * If when you try to run the Mint Green Compiler, it paused and declares a segmentation fault, quit your C++ compiler and retry. If it continues to happen, please note it in the issues.
 
 Mint Green Programming Language Command Key:
+
 	Math:
 		/, divide: x / 6
 
