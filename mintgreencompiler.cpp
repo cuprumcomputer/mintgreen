@@ -1,4 +1,4 @@
-// Mint Green Programming Languge
+// Mint Green Programming Languge Compiler
 // Developed By CUPRUM[]
 
 #include <iostream>
@@ -420,6 +420,7 @@ void AssignValue(int x) {
 		} else {
 			reciever_name_size = intdex[reciever].name.length();
 		}
+	
 	
 // ASSIGN IF MAKING VARIABLE EQUAL TO AN INTEGER
 		if (isdigit(program[x][reciever_name_size + 3])) {
