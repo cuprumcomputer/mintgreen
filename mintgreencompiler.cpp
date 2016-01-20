@@ -19,7 +19,7 @@ int position;
 int current_int;
 int current_char;
 
-bool is_char;
+bool type;
 
 const int VARIABLE_NUMBER = 100;
 
@@ -42,8 +42,8 @@ int GoTo(int);
 int IfStatement(int);
 void AssignValue(int);
 void Display(int);
-int FindVariable(int);
-bool IsChar(int);
+int FindPosition(int);
+bool FindType(int);
 void GetInput(int);
 
 int main() {
@@ -179,14 +179,14 @@ void GetInput(int x) {
 	for (int i = 3; isalpha(program[x][i]); i++) // Copy Each Letter of Character Variable Name
 		isolated += program[x][i];
 		
-	position = FindVariable(x);
-	is_char = IsChar(x);
+	position = FindPosition(x);
+	type = FindType(x);
 
 // GET INPUT	
 	cin.get(input);
 
 // ASSIGN INPUT TO VARIABLE
-	if (is_char) {
+	if (type) {
 		chardex[position].value = input;
 	} else {
 		intdex[position].value = (int)input - 48;
@@ -231,7 +231,7 @@ void CreateChar(int x) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void Display(int x) {
-	bool is_char; // is_char is True if Variable is a Character, False if Integer
+	bool type; // type is True if Variable is a Character, False if Integer
 	bool is_type_found = false; // is_type_found is True if Display Type is Found, False if not
 	
 	position = 0;
@@ -262,10 +262,10 @@ void Display(int x) {
 		for (int i = 3; isalpha(program[x][i]); i++) // Copy Down Other Characters
 			isolated += program[x][i];
 		
-		position = FindVariable(x);
-		is_char = IsChar(x);
+		position = FindPosition(x);
+		type = FindType(x);
 
-		if (is_char) { // If Variable is a Character
+		if (type) { // If Variable is a Character
 			cout << chardex[position].value; 		
 		} else { // If Variable is an Integer
 			cout << intdex[position].value;
@@ -302,10 +302,10 @@ int IfStatement(int x) {
 		
 		name_size = isolated.length();
 		
-		position = FindVariable(x);
-		is_char = IsChar(x);
+		position = FindPosition(x);
+		type = FindType(x);
 		
-		if (is_char) {
+		if (type) {
 			value = int(chardex[position].value); // Convert char to int for Easier Comparing
 		} else {
 			value = intdex[position].value; 
@@ -343,10 +343,10 @@ int IfStatement(int x) {
 		for (int i = 1; isalpha(program[x][2 + name_size + 3 + i]); i++)
 			isolated += program[x][2 + name_size + 3 + i];
 		
-		position = FindVariable(x);
-		is_char = IsChar(x);
+		position = FindPosition(x);
+		type = FindType(x);
 		
-		if (is_char) {
+		if (type) {
 			factor = int(chardex[position].value); // Convert char to int for Easier Comparing
 		} else {
 			factor = intdex[position].value;
@@ -412,10 +412,10 @@ void AssignValue(int x) {
 		for (int i = 1; isalpha(program[x][i]); i++) // Copy Down Other Characters
 				isolated += program[x][i];
 		
-		reciever = FindVariable(x);
-		is_char = IsChar(x);
+		reciever = FindPosition(x);
+		type = FindType(x);
 		
-		if (is_char) {
+		if (type) {
 			reciever_name_size = chardex[reciever].name.length();
 		} else {
 			reciever_name_size = intdex[reciever].name.length();
@@ -450,10 +450,10 @@ void AssignValue(int x) {
 			for (int i = 4; isalpha(program[x][reciever_name_size + i]); i++) // Go Through the Following Characters and Add them to isolated
 				isolated += program[x][reciever_name_size + i];
 				
-			position = FindVariable(x);
-			is_char = IsChar(x);
+			position = FindPosition(x);
+			type = FindType(x);
 			
-			if (is_char) {
+			if (type) {
 				chardex[reciever].value = chardex[transmitter].value;
 			} else {
 				intdex[reciever].value = intdex[transmitter].value;
@@ -464,7 +464,7 @@ void AssignValue(int x) {
 		
 // ASSIGN IF MAKING VARIABLE EQUAL TO AN EXPRESSION
 		if (program[x][reciever_name_size + 3] == '(') {
-			if (is_char) { // If Trying to Assign Character Variable to an Mathematic Expression
+			if (type) { // If Trying to Assign Character Variable to an Mathematic Expression
 				cout << "FATAL ERROR AT LINE " << x + 1 << ": CANNOT ASSIGN EXPRESSION TO CHAR!" << endl; // Display Error
 				delete [] program;
 				exit(EXIT_FAILURE); // Quit
@@ -476,7 +476,7 @@ void AssignValue(int x) {
 				for (int i = 5; isalpha(program[x][reciever_name_size + 5]); i++) // Copy Down Other Characters
 					isolated += program[x][reciever_name_size + i];
 				
-				transmitter = intdex[FindVariable(x)].value; // Find Variable in intdex and Copy Value to transmitter
+				transmitter = intdex[FindPosition(x)].value; // Find Variable in intdex and Copy Value to transmitter
 				
 			} else {
 				cout << "FATAL ERROR AT LINE " << x + 1 << ": IMPROPER SYNTAX!" << endl; // Display Error
@@ -519,11 +519,11 @@ void AssignValue(int x) {
 					for (int i = 5; isalpha(program[x][reciever_name_size + i + transmitter_name_size + 3]); i++) // Copy Down Other Characters
 						isolated += program[x][reciever_name_size + i + transmitter_name_size + 3];
 					
-					is_char = IsChar(x);
+					type = FindType(x);
 					
-					factor = intdex[FindVariable(x)].value; // Copy Down Value of Variable to Factor
+					factor = intdex[FindPosition(x)].value; // Copy Down Value of Variable to Factor
 					
-					if (is_char) {
+					if (type) {
 						cout << "FATAL ERROR AT LINE " << x + 1 << ": CANNOT USE CHAR IN EXPRESSION!" << endl; // Display Error
 						delete [] program;
 						exit(EXIT_FAILURE); // Quit
@@ -571,82 +571,32 @@ void AssignValue(int x) {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int FindVariable(int x) {
-	int pos = 0;
-	
-	char_top: cout << ""; 
-	
-	if (isolated != chardex[pos].name) { // If Variable not Found, Search through chardex
-		if (pos > (current_char - 1)) { // If Searched Through All Initialized Variables in chardex
-			pos = 0;
-			
-			int_top: cout << ""; 	
-			
-			if (isolated != intdex[pos].name) { // Search through intdex
-				if (pos > (current_int - 1)) { // If Searched through All Initialized Variables in intdex and chardex
-					cout << "FATAL ERROR AT LINE " << x + 1 << ": CAN NOT FIND VARIABLE!" << endl; // Display Error
-					delete [] program;
-					exit(EXIT_FAILURE); // Quit
-				}
-				
-				pos++; // Add One to Number
-				goto int_top; // Search through Next Variable in intdex
-				
-			} else {
-				goto done; // If Variable Found, Leave if Statement
-			}
-		} 
-		
-		pos++; // Add One to Number
-		goto char_top; // Search through Next Variable in chardex
+int FindPosition(int x) {
+	for (int i = 0; i < VARIABLE_NUMBER; i++) { // Go Through chardex and intdex to Return True If Variable is Found
+		if(isolated == chardex[i].name || isolated == intdex[i].name)
+			return(i);
 	}
 	
-	done: cout << "";
-	
-	return(pos);
+	cout << "FATAL ERROR AT LINE " << x + 1 << ": CAN NOT FIND VARIABLE!" << endl; // Display Error
+	delete [] program;
+	exit(EXIT_FAILURE); // Quit
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-bool IsChar(int x) {
-	int pos = 0;
-	
-	bool is_char;
-	
-	char_top: cout << ""; 
-	
-	if (isolated != chardex[pos].name) { // If Variable not Found, Search through chardex
-		if (pos > (current_char - 1)) { // If Searched through All Initialized Variables in chardex
-			pos = 0;
-			
-			int_top: cout << ""; 	
-			
-			if (isolated != intdex[pos].name) { // Search through intdex
-				if (pos > (current_int - 1)) { // If Searched through All Initialized Variables in intdex and chardex
-					cout << "FATAL ERROR AT LINE " << x + 1 << ": CAN NOT FIND VARIABLE!" << endl; // Display Error
-					delete [] program;
-					exit(EXIT_FAILURE); // Quit
-				}
-				
-				pos++; // Add One to Number
-				goto int_top; // Search through Next Variable in intdex
-				
-			} else {
-				goto done; // If Variable Found, Leave if Statement
-			}
-		} 
-		pos++; // Add One to Number
-		goto char_top; // Search through Next Variable in chardex
+bool FindType(int x) {
+	for (int i = 0; i < VARIABLE_NUMBER; i++) { // Go Through chardex and Return true If Variable is Found
+		if(isolated == chardex[i].name)
+			return(true);
 	}
 	
-	done: cout << "";
-	
-	if (isolated == chardex[pos].name) {
-		is_char = true;
-	} else {
-		is_char = false;
+	for (int i = 0; i < VARIABLE_NUMBER; i++) { // Go Through intdex and Return True If Variable is Found
+		if(isolated == intdex[i].name) 
+			return(false);
 	}
 	
-	return(is_char);
+	cout << "FATAL ERROR AT LINE " << x + 1 << ": CAN NOT FIND VARIABLE!" << endl; // Display Error
+	delete [] program;
+	exit(EXIT_FAILURE); // Quit
 }
 
 /*
