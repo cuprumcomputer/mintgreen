@@ -124,7 +124,7 @@ int main() {
 			break;
 					
 			case '*':
-				cout << "CHUR🍒BUM" << endl;
+				cout << "DICKS OUT 4 HARAMBE" << endl;
 			break;
 					
 			case '$': // End Program
