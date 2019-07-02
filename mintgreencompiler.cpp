@@ -123,10 +123,6 @@ int main() {
 				x = GoTo(x);
 			break;
 					
-			case '*':
-				cout << "DICKS OUT 4 HARAMBE" << endl;
-			break;
-					
 			case '$': // End Program
 				delete [] program;
 				exit(EXIT_SUCCESS);
